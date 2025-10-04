@@ -37,9 +37,13 @@ export default function Home() {
 
         const data: Product = await res.json();
         setProduct(data);
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || "Something went wrong");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error(err);
+          setError(err.message);
+        } else {
+          setError("Something went wrong");
+        }
       } finally {
         setLoading(false);
       }
