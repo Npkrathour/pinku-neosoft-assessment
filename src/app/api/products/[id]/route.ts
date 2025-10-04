@@ -22,7 +22,7 @@ const products: Product[] = [
     category: "men's clothing",
     image: "https://images.unsplash.com/photo-1627384113743-6bd5a479fffd",
     rating: { rate: 3.9, count: 120 },
-    status: "out-of-stock",
+    status: "sale",
   },
   {
     id: 2,
@@ -95,3 +95,4 @@ export async function GET(
 
   return NextResponse.json(product, { status: 200 });
 }
+
