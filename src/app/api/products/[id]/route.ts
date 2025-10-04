@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const products = [
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: { rate: number; count: number };
+  status: string;
+}
+
+
+const products: Product[] = [
   {
     id: 1,
     title: "NatAura Intelligent Ageing Serum",
@@ -71,10 +83,9 @@ const products = [
 
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
 ) {
-  const { params } = context;
-  const { id } = params;
+  const { id } = await context.params; 
 
   const product = products.find((p) => p.id === Number(id));
 
